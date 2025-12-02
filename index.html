@@ -101,6 +101,22 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
 });
 </script>
 
+<button onclick="send()">Send Hi</button>
+
+<script>
+function send() {
+  fetch("https://discord.com/api/webhooks/1440084893026619498/EghJR4801Er-ZaAFQcKMVSqHD3MCglFGDQqujsGZpkgUg3mNy-TVSouuBcUX7dzERTtF", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ content: "hi" })
+  })
+  .then(r => r.text())
+  .then(t => console.log(t))
+  .catch(err => console.error("Error:", err));
+}
+</script>
 
 
 </body>
